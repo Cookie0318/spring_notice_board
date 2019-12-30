@@ -13,4 +13,5 @@ public interface NoticeDao {
 	public Notice search(int id);
 	public int delete(int id);
 	public int modify(Notice notice);
+	public String test();
 }

@@ -27,7 +27,7 @@
 		
 		<tr>
 			<td style="background-color: #cccccc;width:10%">등록일</td>
-			<td>${n.regdate }</td>
+			<td>${formattedDate}</td>
 			<td style="background-color: #cccccc;width:10%">조회수</td>
 			<td>${n.hit }</td>
 		</tr>

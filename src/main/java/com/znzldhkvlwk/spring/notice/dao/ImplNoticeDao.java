@@ -128,5 +128,12 @@ public class ImplNoticeDao implements NoticeDao{
 	}
 
 
+	@Override
+	public String test() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 }

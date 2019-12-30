@@ -7,4 +7,31 @@
         SELECT WRITER_ID FROM NOTICE WHERE ID = 100
     </select>
     
+    <select id="getList" parameterType="com.znzldhkvlwk.spring.utils.PagingVo" resultType="com.znzldhkvlwk.spring.notice.Notice">
+    	SELECT * FROM (SELECT ROWNUM RN , A.* FROM (SELECT * FROM NOTICE ORDER BY ID DESC) A ) WHERE RN BETWEEN #{start} AND #{end}
+    </select>
+    
+    <select id="getCountList" resultType="int">
+    	SELECT COUNT(*) FROM NOTICE
+    </select>
+    
+    <insert id="write" parameterType="com.znzldhkvlwk.spring.notice.Notice">
+    	INSERT INTO NOTICE(ID, WRITER_ID, TITLE, CONTENT, REGDATE) VALUES(NUM_NOTICE.NEXTVAL, 'znzldhkvlwk', #{title}, #{content}, SYSDATE)
+    </insert>
+    
+    <select id="search" parameterType="int" resultType="com.znzldhkvlwk.spring.notice.Notice">
+    	SELECT * FROM NOTICE WHERE ID = #{id}
+    </select>
+    
+    <delete id="delete">
+    	DELETE FROM NOTICE WHERE ID = #{id}
+    </delete>
+    
+    <select id="idCount" resultType="int">
+    	SELECT COUNT(*) FROM NOTICE WHERE ID = #{id}
+    </select>
+    
+    <update id="modify" parameterType="com.znzldhkvlwk.spring.notice.Notice">
+    	UPDATE NOTICE SET TITLE = #{title}, CONTENT = #{content} , REGDATE = SYSDATE WHERE ID = #{id}
+    </update>
 </mapper>

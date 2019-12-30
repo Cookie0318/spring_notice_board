@@ -1,6 +1,7 @@
 package com.znzldhkvlwk.spring.notice.controller;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.znzldhkvlwk.spring.notice.Notice;
 import com.znzldhkvlwk.spring.notice.service.ImplNoticeService;
-import com.znzldhkvlwk.spring.notice.service.NoticeService;
 import com.znzldhkvlwk.spring.utils.PagingVo;
 
 @Controller
@@ -50,15 +50,15 @@ public class NoticeController {
 //		
 //		return "list2";
 //	}
-	
 	@RequestMapping("/test")
 	public String test(Model model) {
 		String result = service.test();
-		
-		model.addAttribute("test" , result);
+		model.addAttribute("test", result);
 		
 		return "home";
+		
 	}
+	
 	
 	@RequestMapping("/list")
 	public String list(PagingVo vo, Model model
@@ -103,6 +103,8 @@ public class NoticeController {
 	public String detail(HttpServletRequest request, Model model) {
 		int id = Integer.parseInt(request.getParameter("id"));
 		Notice notice = service.search(id);
+		SimpleDateFormat sf = new SimpleDateFormat("yyyy년MM월dd일 E요일 a hh시mm분");
+		model.addAttribute("formattedDate", sf.format(notice.getRegdate()));
 		model.addAttribute("n", notice);
 		return "detail";
 	}

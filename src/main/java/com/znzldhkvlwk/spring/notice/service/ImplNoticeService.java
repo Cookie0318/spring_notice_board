@@ -3,28 +3,22 @@ package com.znzldhkvlwk.spring.notice.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.znzldhkvlwk.spring.notice.Notice;
-import com.znzldhkvlwk.spring.notice.dao.ImplNoticeDao;
-import com.znzldhkvlwk.spring.notice.mapper.NoticeMapper;
+import com.znzldhkvlwk.spring.notice.dao.NoticeDao;
 import com.znzldhkvlwk.spring.utils.PagingVo;
 
 
 @Service
 public class ImplNoticeService implements NoticeService{
 	
-	@Autowired
-	private ImplNoticeDao noticeDao;
 	
+	@Qualifier("MybatisDAO")
 	@Autowired
-	private NoticeMapper mapper;
+	private NoticeDao noticeDao;
 	
-//	@Override
-//	public List<Notice> list() {
-//		
-//		return noticeDao.getList();
-//	}
 	
 	
 	@Override
@@ -62,9 +56,9 @@ public class ImplNoticeService implements NoticeService{
 	}
 	@Override
 	public String test() {
-		
-		return mapper.test();
+		return noticeDao.test();
 	}
+	
 
 	
 	
