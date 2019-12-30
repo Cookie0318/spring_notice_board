@@ -10,4 +10,6 @@ public interface NoticeMapper {
 	
 	public List<Notice> getList(PagingVo vo);
 	
+	public int getListCount();
+	
 }
