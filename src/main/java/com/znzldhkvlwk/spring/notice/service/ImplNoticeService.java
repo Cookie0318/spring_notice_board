@@ -1,6 +1,7 @@
 package com.znzldhkvlwk.spring.notice.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -20,16 +21,26 @@ public class ImplNoticeService implements NoticeService{
 	private NoticeDao noticeDao;
 	
 	
-	
 	@Override
 	public List<Notice> list(PagingVo vo) {
 		
 		return noticeDao.getList(vo);
 	}
 	@Override
+	public List<Notice> mylist(Map<String, Object> map) {
+		
+		return noticeDao.getMyList(map);
+	}
+	@Override
 	public int getListCount() {
 		
 		return noticeDao.getCountList();
+	}
+	
+	@Override
+	public int getMyListCount(String id) {
+		
+		return noticeDao.getCountMyList(id);
 	}
 
 	@Override
@@ -58,6 +69,11 @@ public class ImplNoticeService implements NoticeService{
 	public String test() {
 		return noticeDao.test();
 	}
+	@Override
+	public int hitPlus(int id) {
+		return noticeDao.hitPlus(id);
+	}
+	
 	
 
 	

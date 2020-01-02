@@ -1,6 +1,7 @@
 package com.znzldhkvlwk.spring.notice.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +23,24 @@ public class ImplNoticeMybatisDAO implements NoticeDao{
 		
 		return sqlSession.selectList(namespace+".getList", vo);
 	}
+	@Override
+	public List<Notice> getMyList(Map<String, Object> map) {
+		
+		return sqlSession.selectList(namespace+".getMyList", map);
+	}
 
 	@Override
 	public int getCountList() {
 		
 		return sqlSession.selectOne(namespace+".getCountList");
 	}
+	
+	@Override
+	public int getCountMyList(String id) {
+		
+		return sqlSession.selectOne(namespace+".getCountMyList", id);
+	}
+	
 
 	@Override
 	public int write(Notice notice) {
@@ -60,6 +73,12 @@ public class ImplNoticeMybatisDAO implements NoticeDao{
 	@Override
 	public String test() {
 		return sqlSession.selectOne(namespace+".test");
+	}
+
+	@Override
+	public int hitPlus(int id) {
+		
+		return sqlSession.update(namespace+".hitPlus", id);
 	}
 
 }

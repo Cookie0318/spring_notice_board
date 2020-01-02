@@ -2,17 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
-
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="${cp}/resources/css/bootstrap.css">
-<link rel="stylesheet" href="${cp}/resources/css/myStyle.css">
 <title>Cookie &amp; Pizza</title>
 </head>
+
+
 <body>
-<div>
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
 	  <a class="navbar-brand" href="${cp}/">Cookie &amp; Pizza</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,16 +22,9 @@
 	    <ul class="navbar-nav mr-auto">
 	      <c:choose>
 				<c:when test="${not empty sessionScope.mem}">
-					<%-- <li class="nav-item active">
+					<li class="nav-item active">
 						<a class="nav-link" href="#">${sessionScope.mem.id} 님 <span class="sr-only">(current)</span></a>
-					</li> --%>
-					<li class="nav-item dropdown active">
-				        <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${sessionScope.mem.id} 님</a>
-				        <div class="dropdown-menu" aria-labelledby="dropdown03">
-				          <a class="dropdown-item" href="${cp}/member/modify_form">정보 수정</a>
-				          <a class="dropdown-item" href="${cp}/notice/mylist">내가 쓴글</a>
-				        </div>
-	     	 		</li>
+					</li>
 				</c:when>
 				
 				<c:otherwise>
@@ -67,15 +59,38 @@
 	    </form>
 	  </div>
 	</nav>
-	<div id="content">
-		<h1>Welcome to Cookie and Pizza Web Site</h1>
-		<p class="lead">
-		"안녕하세요 CRUD, 회원가입 및 로그인 구현 연습 사이트 입니다."
-		</p>
-		
+	<div class="container">
+		<h2 class="mt-5">공지사항</h2>
+		<table class="table table-stripped">
+			<tr>
+				<td style="background-color: #cccccc; width:10%">제목</td>
+				<td colspan="3">${n.title }</td>
+			</tr>
+			
+			<tr>
+				<td style="background-color: #cccccc;width:10%">작성자</td>
+				<td colspan="3">${n.writer_Id }</td>
+			</tr>
+			
+			<tr>
+				<td style="background-color: #cccccc;width:10%">등록일</td>
+				<td>${formattedDate}</td>
+				<td style="background-color: #cccccc;width:10%">조회수</td>
+				<td>${n.hit }</td>
+			</tr>
+		</table>
+		<p class="container">${n.content}</p>
+		<div class="text-center">
+			<a class="btn btn-primary" href="${cp}/notice/list">목록</a>
+			<c:if test="${n.writer_Id == sessionScope.mem.id}">
+				<a class="btn btn-danger" href="${cp}/notice/delete?id=${n.id}">삭제</a>
+				<a class="btn btn-success" href="${cp}/notice/modify_form?id=${n.id}">수정</a>
+			</c:if>
+		</div>
 	</div>
-</div>
-</body>
+
+
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="${cp}/resources/js/bootstrap.js"></script>
+</body>
 </html>

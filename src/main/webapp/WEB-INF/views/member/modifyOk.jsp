@@ -23,16 +23,9 @@
 	    <ul class="navbar-nav mr-auto">
 	      <c:choose>
 				<c:when test="${not empty sessionScope.mem}">
-					<%-- <li class="nav-item active">
+					<li class="nav-item active">
 						<a class="nav-link" href="#">${sessionScope.mem.id} 님 <span class="sr-only">(current)</span></a>
-					</li> --%>
-					<li class="nav-item dropdown active">
-				        <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${sessionScope.mem.id} 님</a>
-				        <div class="dropdown-menu" aria-labelledby="dropdown03">
-				          <a class="dropdown-item" href="${cp}/member/modify_form">정보 수정</a>
-				          <a class="dropdown-item" href="${cp}/notice/mylist">내가 쓴글</a>
-				        </div>
-	     	 		</li>
+					</li>
 				</c:when>
 				
 				<c:otherwise>
@@ -70,7 +63,7 @@
 	<div id="content">
 		<h1>Welcome to Cookie and Pizza Web Site</h1>
 		<p class="lead">
-		"안녕하세요 CRUD, 회원가입 및 로그인 구현 연습 사이트 입니다."
+		정보 수정 완료!
 		</p>
 		
 	</div>

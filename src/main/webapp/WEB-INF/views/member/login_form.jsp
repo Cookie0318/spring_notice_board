@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <html>
 <head>
@@ -23,16 +23,9 @@
 	    <ul class="navbar-nav mr-auto">
 	      <c:choose>
 				<c:when test="${not empty sessionScope.mem}">
-					<%-- <li class="nav-item active">
+					<li class="nav-item active">
 						<a class="nav-link" href="#">${sessionScope.mem.id} 님 <span class="sr-only">(current)</span></a>
-					</li> --%>
-					<li class="nav-item dropdown active">
-				        <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${sessionScope.mem.id} 님</a>
-				        <div class="dropdown-menu" aria-labelledby="dropdown03">
-				          <a class="dropdown-item" href="${cp}/member/modify_form">정보 수정</a>
-				          <a class="dropdown-item" href="${cp}/notice/mylist">내가 쓴글</a>
-				        </div>
-	     	 		</li>
+					</li>
 				</c:when>
 				
 				<c:otherwise>
@@ -67,12 +60,16 @@
 	    </form>
 	  </div>
 	</nav>
-	<div id="content">
-		<h1>Welcome to Cookie and Pizza Web Site</h1>
-		<p class="lead">
-		"안녕하세요 CRUD, 회원가입 및 로그인 구현 연습 사이트 입니다."
-		</p>
-		
+	<div id="login" class="text-center">
+	    <form:form class="form-signin" action="${cp}/member/loginOk" method="post" commandName="member">
+	      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+	      <label for="inputId" class="sr-only">아이디 입력</label>
+	      <form:input id="inputId" class="form-control" placeholder="아이디 입력" path="id"/>
+	      <label for="inputPassword" class="sr-only">Password</label>
+	      <form:password id="inputPassword" class="form-control" placeholder="Password" path="password"/>
+	      <button class="btn btn-lg btn-primary btn-block mt-3"type="submit">Sign in</button>
+	      <p class="mt-5 mb-3 text-muted">© Cookie &amp; Pizza</p>
+	    </form:form>
 	</div>
 </div>
 </body>

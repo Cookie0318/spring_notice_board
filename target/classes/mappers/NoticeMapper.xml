@@ -11,12 +11,20 @@
     	SELECT * FROM (SELECT ROWNUM RN , A.* FROM (SELECT * FROM NOTICE ORDER BY ID DESC) A ) WHERE RN BETWEEN #{start} AND #{end}
     </select>
     
+    <select id="getMyList" parameterType="hashmap" resultType="com.znzldhkvlwk.spring.notice.Notice">
+    	SELECT * FROM (SELECT ROWNUM RN , A.* FROM (SELECT * FROM NOTICE WHERE WRITER_ID = #{id} ORDER BY ID DESC) A ) WHERE RN BETWEEN #{vo.start} AND #{vo.end}
+    </select>
+    
     <select id="getCountList" resultType="int">
     	SELECT COUNT(*) FROM NOTICE
     </select>
     
+    <select id="getCountMyList" parameterType="String" resultType="int">
+    	SELECT COUNT(*) FROM NOTICE WHERE WRITER_ID = #{id}
+    </select>
+    
     <insert id="write" parameterType="com.znzldhkvlwk.spring.notice.Notice">
-    	INSERT INTO NOTICE(ID, WRITER_ID, TITLE, CONTENT, REGDATE) VALUES(NUM_NOTICE.NEXTVAL, 'znzldhkvlwk', #{title}, #{content}, SYSDATE)
+    	INSERT INTO NOTICE(ID, WRITER_ID, TITLE, CONTENT, REGDATE, HIT) VALUES(NUM_NOTICE.NEXTVAL, #{writer_Id}, #{title}, #{content}, SYSDATE, 0)
     </insert>
     
     <select id="search" parameterType="int" resultType="com.znzldhkvlwk.spring.notice.Notice">
@@ -33,5 +41,9 @@
     
     <update id="modify" parameterType="com.znzldhkvlwk.spring.notice.Notice">
     	UPDATE NOTICE SET TITLE = #{title}, CONTENT = #{content} , REGDATE = SYSDATE WHERE ID = #{id}
+    </update>
+    
+    <update id="hitPlus" parameterType="int">
+    	UPDATE NOTICE SET HIT = HIT + 1 WHERE ID = #{id}
     </update>
 </mapper>

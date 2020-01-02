@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <html>
 <head>
@@ -23,16 +23,9 @@
 	    <ul class="navbar-nav mr-auto">
 	      <c:choose>
 				<c:when test="${not empty sessionScope.mem}">
-					<%-- <li class="nav-item active">
+					<li class="nav-item active">
 						<a class="nav-link" href="#">${sessionScope.mem.id} 님 <span class="sr-only">(current)</span></a>
-					</li> --%>
-					<li class="nav-item dropdown active">
-				        <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${sessionScope.mem.id} 님</a>
-				        <div class="dropdown-menu" aria-labelledby="dropdown03">
-				          <a class="dropdown-item" href="${cp}/member/modify_form">정보 수정</a>
-				          <a class="dropdown-item" href="${cp}/notice/mylist">내가 쓴글</a>
-				        </div>
-	     	 		</li>
+					</li>
 				</c:when>
 				
 				<c:otherwise>
@@ -67,11 +60,51 @@
 	    </form>
 	  </div>
 	</nav>
-	<div id="content">
-		<h1>Welcome to Cookie and Pizza Web Site</h1>
-		<p class="lead">
-		"안녕하세요 CRUD, 회원가입 및 로그인 구현 연습 사이트 입니다."
-		</p>
+	<div id="join" class="container text-center">
+		<h1>회원가입 하기</h1>
+		<form:form action="${cp}/member/joinOk" method="post" commandName="member">
+			<table class="table">
+				<tr>
+					<td>이름: </td>
+					<td><form:input path="name" size="10"/></td>
+				</tr>
+				<tr>
+					<td>아이디: </td>
+					<td><form:input path="id"/></td>
+				</tr>
+				
+				<tr>
+					<td>비밀번호: </td>
+					<td><form:password path="password"/></td>
+				</tr>
+				
+				<tr>
+					<td>성별: </td>
+					<td>
+					<form:radiobutton path="gender" value="남성" label="남성" />
+					<form:radiobutton path="gender" value="여성" label="여성" />
+					</td>
+					
+				</tr>
+				
+				<tr>
+					<td>나이: </td>
+					<td><form:input path="age"/>세</td>
+				</tr>
+				
+				<tr>
+					<td>생년월일: </td>
+					<td style="color:#cccccc;"><form:input path="birthday"/>(yyyy-MM-dd)</td>
+				</tr>
+				
+				<tr>
+					<td>핸드폰 번호</td>
+					<td><form:input path="phone1"/>-<form:input path="phone2"/>-<form:input path="phone3"/></td>
+				</tr>
+			</table>
+			
+			<input type="submit" value="Submit" class="btn btn-primary"/>
+		</form:form>
 		
 	</div>
 </div>
