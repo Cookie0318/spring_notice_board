@@ -54,7 +54,7 @@
 	  	</div>
 	</nav>
 	<div id="login" class="text-center">
-	    <form class="form-signin" action="/sec/login" method="post">
+	    <form class="form-signin" action="${cp}/sec/login" method="post">
 	      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 	      <label for="inputId" class="sr-only">아이디 입력</label>
 	      <input type="text" id="inputId" class="form-control" placeholder="ID" name="loginId">
