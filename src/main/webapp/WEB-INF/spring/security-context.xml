@@ -18,7 +18,7 @@
             	password-parameter="loginPwd"
             	login-processing-url="/sec/login"
             	login-page="/sec/login_form"
-            	default-target-url="/"
+            	default-target-url="/spring/"
             	/>
             
             

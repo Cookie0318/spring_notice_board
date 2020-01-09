@@ -60,7 +60,7 @@
 	      <input type="text" id="inputId" class="form-control" placeholder="ID" name="loginId">
 	      <label for="inputPassword" class="sr-only">Password</label>
 	      <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="loginPwd" />
-	      <input type="hidden" name="${_csrf.parameterName}" value="${_crsf.token}" />
+	      <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
 	      <button class="btn btn-lg btn-primary btn-block mt-3"type="submit">Sign in</button>
 	      <p class="mt-5 mb-3 text-muted">© Cookie &amp; Pizza</p>
 	    </form>
