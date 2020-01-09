@@ -32,6 +32,12 @@
 				        <div class="dropdown-menu" aria-labelledby="dropdown03">
 				          <a class="dropdown-item" href="${cp}/member/modify_form">정보 수정</a>
 				          <a class="dropdown-item" href="${cp}/notice/mylist">내가 쓴글</a>
+				          <sec:authorize access="hasRole('ROLE_USER')">
+				          	<p>user</p>
+				          </sec:authorize>
+				          <sec:authorize access="hasRole('ROLE_ADMIN')">
+				          	<p>ADMIN</p>
+				          </sec:authorize>
 				        </div>
 	     	 		</li>
      	 		</sec:authorize>
