@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.znzldhkvlwk.spring.member.Member;
-import com.znzldhkvlwk.spring.member.service.ImplMemberService;
 import com.znzldhkvlwk.spring.member.service.MemberService;
 
 @Controller
@@ -20,7 +19,7 @@ public class MemberController {
 	
 	@Autowired
 	@Qualifier("MemberService")
-	private ImplMemberService service;
+	private MemberService service;
 	
 	
 	

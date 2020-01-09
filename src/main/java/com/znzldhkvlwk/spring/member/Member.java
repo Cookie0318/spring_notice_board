@@ -1,13 +1,8 @@
 package com.znzldhkvlwk.spring.member;
 
-import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-public class Member implements UserDetails{
+public class Member {
 	private String id;
 	private String password;
 	private String name;
@@ -17,22 +12,6 @@ public class Member implements UserDetails{
 	private String phone1;
 	private String phone2;
 	private String phone3;
-	
-	//Sequrity 관련 멤버 변수들
-	private List<Role> authorities;
-	private boolean accountNonExpired = true;
-	private boolean accountNonLocked = true;
-	private boolean credentialsNonExpired = true;
-	private boolean enabled = true;
-	
-	public void setAuthorities(List<Role> authorities) {
-		this.authorities = authorities;
-	}
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return this.authorities;
-	}
 	
 	public String getPhone1() {
 		return phone1;
@@ -96,44 +75,6 @@ public class Member implements UserDetails{
 	}
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
-	}
-	
-	@Override
-	public String getUsername() {
-		// TODO Auto-generated method stub
-		return id;
-	}
-	@Override
-	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return this.accountNonExpired;
-	}
-	@Override
-	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return this.accountNonLocked;
-	}
-	@Override
-	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return this.credentialsNonExpired;
-	}
-	@Override
-	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return this.enabled;
-	}
-	public void setAccountNonExpired(boolean accountNonExpired) {
-		this.accountNonExpired = accountNonExpired;
-	}
-	public void setAccountNonLocked(boolean accountNonLocked) {
-		this.accountNonLocked = accountNonLocked;
-	}
-	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
-		this.credentialsNonExpired = credentialsNonExpired;
-	}
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
 	}
 	
 	
