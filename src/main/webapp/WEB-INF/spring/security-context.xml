@@ -17,7 +17,7 @@
             	username-parameter="loginId" 
             	password-parameter="loginPwd"
             	login-processing-url="/login"
-            	login-page="/member/login_form"
+            	login-page="/sec/login_form"
             	default-target-url="/"
             	/>
             
