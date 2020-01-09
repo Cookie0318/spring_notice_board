@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,7 +77,8 @@
 		<p class="container">${n.content}</p>
 		<div class="text-center">
 			<a class="btn btn-primary" href="${cp}/notice/list">목록</a>
-			<c:if test="${n.writer_Id == sessionScope.mem.id}">
+			<sec:authentication var="principal" property="principal" />
+			<c:if test="${n.writer_Id == principal.username}">
 				<a class="btn btn-danger" href="${cp}/notice/delete?id=${n.id}">삭제</a>
 				<a class="btn btn-success" href="${cp}/notice/modify_form?id=${n.id}">수정</a>
 			</c:if>
