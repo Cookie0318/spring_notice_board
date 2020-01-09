@@ -41,30 +41,6 @@ public class MemberController {
 		return "member/joinOk";
 	}
 	
-	@RequestMapping("/login_form")
-	public String login(Member member) {
-		return "member/login_form";
-	}
-	
-	@RequestMapping(value = "loginOk" , method = RequestMethod.POST)
-	public String loginOk(Member member, HttpSession session) {
-		Member mem = service.login(member);
-		if(mem == null) {
-			return "member/loginFail";
-		}
-		else {
-			session.setAttribute("mem", mem);
-		}
-		
-		return "home";
-	}
-	
-	@RequestMapping("/logout")
-	public String logout(HttpSession session) {
-		session.invalidate();
-		
-		return "home";
-	}
 	
 	@RequestMapping("/modify_form")
 	public String modify(Member member) {
