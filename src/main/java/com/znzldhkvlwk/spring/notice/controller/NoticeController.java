@@ -147,8 +147,8 @@ public class NoticeController {
 	}
 	@RequestMapping("/modify_form")
 	public String modify(@RequestParam("id")String id, Model model, Notice notice, HttpSession session) {
-		Member member = (Member)session.getAttribute("mem");
-		String loginId = member.getId();
+		Member mem = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String loginId = mem.getId();
 		//수정을 위해서 현재 보고있는 공지사항 정보 가져옴
 		Notice n = service.search(Integer.parseInt(id));
 		
