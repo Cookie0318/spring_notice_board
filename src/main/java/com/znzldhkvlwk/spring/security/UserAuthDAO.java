@@ -2,9 +2,11 @@ package com.znzldhkvlwk.spring.security;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.znzldhkvlwk.spring.member.Member;
 
+@Repository("userAuthDAO")
 public class UserAuthDAO{
 	@Autowired
 	private SqlSession sqlSession;
