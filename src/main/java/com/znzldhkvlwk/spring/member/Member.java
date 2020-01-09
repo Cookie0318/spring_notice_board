@@ -1,8 +1,15 @@
 package com.znzldhkvlwk.spring.member;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
-public class Member {
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+public class Member implements UserDetails{
 	private String id;
 	private String password;
 	private String name;
@@ -12,7 +19,21 @@ public class Member {
 	private String phone1;
 	private String phone2;
 	private String phone3;
+	private int	enabled;
+	private String authority;
 	
+	public String getAuthority() {
+		return authority;
+	}
+	public void setAuthority(String authority) {
+		this.authority = authority;
+	}
+	public int getEnabled() {
+		return enabled;
+	}
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
+	}
 	public String getPhone1() {
 		return phone1;
 	}
@@ -75,6 +96,37 @@ public class Member {
 	}
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
+	}
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		List<GrantedAuthority> auth = new ArrayList<GrantedAuthority>();
+		auth.add(new SimpleGrantedAuthority(authority));
+		return auth;
+	}
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return id;
+	}
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return (enabled == 1 ? true : false);
 	}
 	
 	
