@@ -9,6 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+@SuppressWarnings("serial")
 public class Member implements UserDetails{
 	private String id;
 	private String password;
@@ -19,40 +20,9 @@ public class Member implements UserDetails{
 	private String phone1;
 	private String phone2;
 	private String phone3;
-	private int	enabled;
+	private boolean	enabled;
 	private String authority;
 	
-	public String getAuthority() {
-		return authority;
-	}
-	public void setAuthority(String authority) {
-		this.authority = authority;
-	}
-	public int getEnabled() {
-		return enabled;
-	}
-	public void setEnabled(int enabled) {
-		this.enabled = enabled;
-	}
-	public String getPhone1() {
-		return phone1;
-	}
-	public void setPhone1(String phone1) {
-		this.phone1 = phone1;
-	}
-	public String getPhone2() {
-		return phone2;
-	}
-	public void setPhone2(String phone2) {
-		this.phone2 = phone2;
-	}
-	public String getPhone3() {
-		return phone3;
-	}
-	public void setPhone3(String phone3) {
-		this.phone3 = phone3;
-	}
-	private Date regdate;
 	
 	public String getId() {
 		return id;
@@ -90,12 +60,35 @@ public class Member implements UserDetails{
 	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
-	
-	public Date getRegdate() {
-		return regdate;
+	public String getPhone1() {
+		return phone1;
 	}
-	public void setRegdate(Date regdate) {
-		this.regdate = regdate;
+	public void setPhone1(String phone1) {
+		this.phone1 = phone1;
+	}
+	public String getPhone2() {
+		return phone2;
+	}
+	public void setPhone2(String phone2) {
+		this.phone2 = phone2;
+	}
+	public String getPhone3() {
+		return phone3;
+	}
+	public void setPhone3(String phone3) {
+		this.phone3 = phone3;
+	}
+	public boolean getEnabled() {
+		return enabled;
+	}
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+	public String getAuthority() {
+		return authority;
+	}
+	public void setAuthority(String authority) {
+		this.authority = authority;
 	}
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -126,7 +119,7 @@ public class Member implements UserDetails{
 	@Override
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
-		return (enabled == 1 ? true : false);
+		return enabled;
 	}
 	
 	

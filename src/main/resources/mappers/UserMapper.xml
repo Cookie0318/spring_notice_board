@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.znzldhkvlwk.spring.security.UserMapper">
+ 
+    <select id="selectUserById" resultType="com.znzldhkvlwk.spring.member.Member">
+    	SELECT MEMBER.*, ROLE_ID AUTHORITY FROM MEMBER JOIN MEMBER_ROLE ON MEMBER.ID = MEMBER_ROLE.MEMBER_ID WHERE ID = #{loginId}
+    </select>    
+</mapper>
