@@ -19,6 +19,7 @@
                 <user-service>
                     <user name="user" password="userPw" authorities="ROLE_USER"/>
                     <user name="guest" password="guest" authorities="ROLE_GUEST"/>
+                   	<user name="admin" password="admin" authorities="ROLE_ADMIN" />
                 </user-service>
             </authentication-provider>
         </authentication-manager>
