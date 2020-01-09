@@ -8,12 +8,12 @@
     	declare
     		begin
     			INSERT INTO MEMBER(ID, PASSWORD, NAME, GENDER, AGE, BIRTHDAY, PHONE1, PHONE2, PHONE3, REGDATE) VALUES(#{id}, #{password},#{name},#{gender},#{age},#{birthday},#{phone1},#{phone2},#{phone3},SYSDATE);
-				INSERT INTO MEMBER_ROLE(MEMBER_ID, ROLE_ID) VALUES(#{id}, 'member');
+				INSERT INTO MEMBER_ROLE(MEMBER_ID, ROLE_ID) VALUES(#{id}, 'ROLE_USER');
 			end
 		} 			
     </insert>
     
-    <select id="search" parameterType="com.znzldhkvlwk.spring.member.Member" resultType="com.znzldhkvlwk.spring.member.Member">
+    <select id="search" parameterType="String" resultType="com.znzldhkvlwk.spring.member.Member">
     	SELECT * FROM MEMBER WHERE ID = #{id}
     </select>
     
@@ -24,5 +24,9 @@
     <update id="modify" parameterType="com.znzldhkvlwk.spring.member.Member">
     	UPDATE MEMBER SET PASSWORD = #{password}, GENDER = #{gender}, AGE = #{age}, BIRTHDAY = #{birthday}, PHONE1 = #{phone1}, PHONE2 = #{phone2}, PHONE3 = #{phone3} WHERE ID = #{id}
     </update>
+    
+    <select id="getRole" parameterType="String" resultType="String">
+    	SELECT ROLE_ID FROM MEMBER_ROLE WHERE MEMBER_ID = #{id}
+    </select>
     
 </mapper>

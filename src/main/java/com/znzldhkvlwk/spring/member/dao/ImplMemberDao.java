@@ -20,12 +20,21 @@ public class ImplMemberDao implements MemberDao{
 	@Override
 	public Member login(Member member) {
 		
-		return sqlSession.selectOne(namespace+".search", member);
+		return sqlSession.selectOne(namespace+".login", member);
 	}
 	@Override
 	public int modify(Member member) {
 		
 		return sqlSession.update(namespace+".modify", member);
+	}
+	@Override
+	public Member search(String id) {
+		return sqlSession.selectOne(namespace+".search", id);
+	}
+	@Override
+	public String getRole(String id) {
+		
+		return sqlSession.selectOne(namespace+".getRole", id);
 	}
 	
 }

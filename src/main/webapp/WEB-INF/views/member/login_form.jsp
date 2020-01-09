@@ -58,9 +58,9 @@
 	    <form:form class="form-signin" action="${cp}/member/loginOk" method="post" commandName="member">
 	      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 	      <label for="inputId" class="sr-only">아이디 입력</label>
-	      <form:input id="inputId" class="form-control" placeholder="아이디 입력" path="id"/>
+	      <form:input id="inputId" name="id" class="form-control" placeholder="아이디 입력" path="id"/>
 	      <label for="inputPassword" class="sr-only">Password</label>
-	      <form:password id="inputPassword" class="form-control" placeholder="Password" path="password"/>
+	      <form:password id="inputPassword" name="pw" class="form-control" placeholder="Password" path="password"/>
 	      <button class="btn btn-lg btn-primary btn-block mt-3"type="submit">Sign in</button>
 	      <p class="mt-5 mb-3 text-muted">© Cookie &amp; Pizza</p>
 	    </form:form>
