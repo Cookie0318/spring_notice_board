@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -107,9 +108,9 @@
 			</c:forEach>
 		</table>
 		<div style="text-align:right">
-		<c:if test="${not empty sessionScope.mem}">
+		<sec:authorize access="isAuthenticated()">
 			<a class="btn btn-primary" href="${cp}/notice/write_form">글쓰기</a>
-		</c:if>
+		</sec:authorize>
 		<a class="btn btn-primary" href="${cp}/notice/list">목록</a>
 		</div>
 		

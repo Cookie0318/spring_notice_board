@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,7 +58,8 @@
 	<div class="container">
 		<h2 class="mt-5">공지사항 작성</h2>
 		<form:form action="${cp}/notice/writeOk" method="post" commandName="notice">
-			<form:hidden path="writer_Id" value="${sessionScope.mem.id}"/>
+			<sec:authentication var="principal" property="principal" />
+			<form:hidden path="writer_Id" value="${principal.username}"/>
 			<table class="table table-stripped">
 				<tr>
 					<td style="background-color: #cccccc; width:10%">제목</td>
