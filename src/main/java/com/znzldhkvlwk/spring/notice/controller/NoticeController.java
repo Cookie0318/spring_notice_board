@@ -117,11 +117,11 @@ public class NoticeController {
 		return "notice/detail";
 	}
 	@RequestMapping("/delete")
-	public String delete(@RequestParam("id")String id, HttpSession session) {
+	public String delete(@RequestParam("id")String id, Principal principal) {
 		//비정상적 접근을 막기위해
 		//접근 아이디
-		Member member = (Member)session.getAttribute("mem");
-		String loginId = member.getId();
+		Member mem = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String loginId = mem.getId();
 		Notice notice = service.search(Integer.parseInt(id));
 		int result = 0;
 		if(notice != null) { //게시글 존재하는경우
