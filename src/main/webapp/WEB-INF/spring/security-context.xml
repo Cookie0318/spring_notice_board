@@ -21,6 +21,11 @@
             	login-page="/sec/login_form"
             	default-target-url="/spring/"
             	/>
+            <logout
+            	logout-url="/logout"
+            	logout-success-url="/spring/"
+            
+            />
             
             
             
