@@ -62,8 +62,18 @@
 	      <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="loginPwd" />
 	      <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
 	      <button class="btn btn-lg btn-primary btn-block mt-3"type="submit">Sign in</button>
+	      <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+	    	<font color="red">
+	    		<p>로그인에 실패 했습니다. <br/>
+	    			${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+	    		</p>
+	    		<c:remove var="SPRING_SECURITY_LAST_EXCEPTION" scope="session" />
+	    	</font>
+	      </c:if>
 	      <p class="mt-5 mb-3 text-muted">© Cookie &amp; Pizza</p>
 	    </form>
+	    
+	    
 	</div>
 </div>
 </body>

@@ -8,7 +8,7 @@
     	declare
     		begin
     			INSERT INTO MEMBER(ID, PASSWORD, NAME, GENDER, AGE, BIRTHDAY, PHONE1, PHONE2, PHONE3, REGDATE) VALUES(#{id}, #{password},#{name},#{gender},#{age},#{birthday},#{phone1},#{phone2},#{phone3},SYSDATE);
-				INSERT INTO MEMBER_ROLE(MEMBER_ID, ROLE_ID) VALUES(#{id}, 'member');
+				INSERT INTO MEMBER_ROLE(MEMBER_ID, ROLE_ID) VALUES(#{id}, 'ROLE_USER');
 			end
 		} 			
     </insert>

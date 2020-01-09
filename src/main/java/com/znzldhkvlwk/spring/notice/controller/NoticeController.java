@@ -1,5 +1,6 @@
 package com.znzldhkvlwk.spring.notice.controller;
 
+import java.security.Principal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -171,10 +173,11 @@ public class NoticeController {
 	}
 	@RequestMapping("mylist")
 	public String mylist(HttpSession session, PagingVo vo, Model model
+			, Principal principal
 			, @RequestParam(value="nowPage", required=false)String nowPage
 			, @RequestParam(value="cntPerPage", required=false)String cntPerPage) {
-		Member member = (Member)session.getAttribute("mem");
-		String id = member.getId();
+		Member mem = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String id = mem.getId();
 		
 		int total = service.getMyListCount(id);
 //		if (nowPage == null && cntPerPage == null) {

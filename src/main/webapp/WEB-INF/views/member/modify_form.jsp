@@ -60,16 +60,16 @@
 			<table class="table">
 				<tr>
 					<td>이름: </td>
-					<td><form:input path="name" size="10" readonly="true" value="${sessionScope.mem.name}"/></td>
+					<td><form:input path="name" size="10" readonly="true" value="${mem.name}"/></td>
 				</tr>
 				<tr>
 					<td>아이디: </td>
-					<td><form:input path="id" readonly="true" value="${sessionScope.mem.id}"/></td>
+					<td><form:input path="id" readonly="true" value="${mem.id}"/></td>
 				</tr>
 				
 				<tr>
 					<td>비밀번호: </td>
-					<td><form:password path="password" value="${sessionScope.mem.password}"/></td>
+					<td><form:password path="password" value="${mem.password}"/></td>
 				</tr>
 				
 				<tr>
@@ -83,17 +83,17 @@
 				
 				<tr>
 					<td>나이: </td>
-					<td><form:input path="age" value="${sessionScope.mem.age}"/>세</td>
+					<td><form:input path="age" value="${mem.age}"/>세</td>
 				</tr>
 				
 				<tr>
 					<td>생년월일: </td>
-					<td style="color:#cccccc;"><form:input path="birthday" value="${sessionScope.mem.birthday}"/>(yyyy-MM-dd)</td>
+					<td style="color:#cccccc;"><form:input path="birthday" value="${mem.birthday}"/>(yyyy-MM-dd)</td>
 				</tr>
 				
 				<tr>
 					<td>핸드폰 번호</td>
-					<td><form:input path="phone1" value="${sessionScope.mem.phone1}"/>-<form:input path="phone2" value="${sessionScope.mem.phone2}"/>-<form:input path="phone3" value="${sessionScope.mem.phone3}"/></td>
+					<td><form:input path="phone1" value="${mem.phone1}"/>-<form:input path="phone2" value="${mem.phone2}"/>-<form:input path="phone3" value="${mem.phone3}"/></td>
 				</tr>
 			</table>
 			
