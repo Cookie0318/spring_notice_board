@@ -22,7 +22,7 @@
 	
 	  	<div class="collapse navbar-collapse" id="navbarsExample03">
 	    	<ul class="navbar-nav mr-auto">
-	      		<sec:authorize access="isAnonymous()">
+	      		<sec:authorize access="isAuthenticated()">
 					<%-- <li class="nav-item active">
 						<a class="nav-link" href="#">${sessionScope.mem.id} 님 <span class="sr-only">(current)</span></a>
 					</li> --%>
@@ -34,9 +34,9 @@
 				        </div>
 	     	 		</li>
      	 		</sec:authorize>
-				<sec:authorize access="isAuthenticated()">
+				<sec:authorize access="isAnonymous()">
 					<li class="nav-item active">
-						<a class="nav-link" href="${cp}/member/login_form">로그인<span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="${cp}/sec/login_form">로그인<span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item">
 	        			<a class="nav-link" href="${cp}/member/join_form">회원가입</a>

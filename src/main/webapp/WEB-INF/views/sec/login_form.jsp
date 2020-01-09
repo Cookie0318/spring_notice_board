@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <html>
@@ -21,7 +22,7 @@
 	
 	  	<div class="collapse navbar-collapse" id="navbarsExample03">
 	    	<ul class="navbar-nav mr-auto">
-	      		<sec:authorize access="isAnonymous()">
+	      		<sec:authorize access="isAuthenticated()">
 					<%-- <li class="nav-item active">
 						<a class="nav-link" href="#">${sessionScope.mem.id} 님 <span class="sr-only">(current)</span></a>
 					</li> --%>
@@ -33,7 +34,7 @@
 				        </div>
 	     	 		</li>
      	 		</sec:authorize>
-				<sec:authorize access="isAuthenticated()">
+				<sec:authorize access="isAnonymous()">
 					<li class="nav-item active">
 						<a class="nav-link" href="${cp}/member/login_form">로그인<span class="sr-only">(current)</span></a>
 					</li>
@@ -59,7 +60,7 @@
 	      <input type="text" id="inputId" class="form-control" placeholder="ID" name="loginId">
 	      <label for="inputPassword" class="sr-only">Password</label>
 	      <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="loginPwd" />
-	      <input name="${_csrf.parameterName}" type="hidden" value="${_crsf.token}" />
+	      <input type="hidden" name="${_csrf.parameterName}" value="${_crsf.token}" />
 	      <button class="btn btn-lg btn-primary btn-block mt-3"type="submit">Sign in</button>
 	      <p class="mt-5 mb-3 text-muted">© Cookie &amp; Pizza</p>
 	    </form>
