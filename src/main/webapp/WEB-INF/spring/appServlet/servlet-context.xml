@@ -24,13 +24,13 @@
 	
 	<context:component-scan base-package="com.znzldhkvlwk.spring" />
 	
-	<interceptors>
+	<!-- <interceptors>
 		<interceptor>
 			<mapping path="/member/modify_form"/>
 			<mapping path="/member/logout"/>
-			<!-- <mapping path="/notice/write_form"/>
+			<mapping path="/notice/write_form"/>
 			<mapping path="/notice/delete"/>
-			<mapping path="/notice/modify_form"/> -->
+			<mapping path="/notice/modify_form"/>
 			<beans:bean class="com.znzldhkvlwk.spring.member.interceptor.MemberInterceptor"/>
 		</interceptor>
 	</interceptors>
@@ -43,7 +43,7 @@
 			<mapping path="/notice/mylist"/>
 			<beans:bean class="com.znzldhkvlwk.spring.notice.interceptor.NoticeInterceptor"/>
 		</interceptor>
-	</interceptors>
+	</interceptors> -->
 	
 	
 	
