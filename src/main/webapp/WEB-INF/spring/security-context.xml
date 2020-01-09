@@ -19,11 +19,11 @@
             	password-parameter="loginPwd"
             	login-processing-url="/sec/login"
             	login-page="/sec/login_form"
-            	default-target-url="/spring/"
+            	default-target-url="/"
             	/>
             <logout
             	logout-url="/logout"
-            	logout-success-url="/spring/"
+            	logout-success-url="/"
             
             />
             
