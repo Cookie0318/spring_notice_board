@@ -99,7 +99,8 @@ public class NoticeController {
 		Notice notice = service.search(Integer.parseInt(id));
 		int result = 0;
 		if(notice != null) { //게시글 존재하는경우
-			if(loginId.equals(notice.getWriter_Id())) { //현재 로그인한 사용자가 작성자인 경우
+			//현재 로그인한 사용자가 작성자인 경우 혹은 관리자인 경우
+			if(loginId.equals(notice.getWriter_Id()) || mem.getAuthority().equals("ROLE_ADMIN")) {
 				result = service.delete(Integer.parseInt(id));
 			}else {
 				result = 2; //비정상 접근(작성자가 아니면 버튼이 없는데 접근한 경우임)
@@ -156,15 +157,7 @@ public class NoticeController {
 		String id = mem.getId();
 		
 		int total = service.getMyListCount(id);
-//		if (nowPage == null && cntPerPage == null) {
-//			nowPage = "1";
-//			cntPerPage = "5";
-//		} else if (nowPage == null) {
-//			nowPage = "1";
-//		} else if (cntPerPage == null) {
-//			cntPerPage = "5";
-//		}
-//		vo = new PagingVo(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+
 		vo = getPagingVo(total, nowPage, cntPerPage);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
