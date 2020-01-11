@@ -21,37 +21,39 @@
 	
 	  	<div class="collapse navbar-collapse" id="navbarsExample03">
 	    	<ul class="navbar-nav mr-auto">
-	      		<c:choose>
-					<c:when test="${not empty sessionScope.mem}">
-						<%-- <li class="nav-item active">
-							<a class="nav-link" href="#">${sessionScope.mem.id} 님 <span class="sr-only">(current)</span></a>
-						</li> --%>
-						<li class="nav-item dropdown active">
-					        <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${sessionScope.mem.id} 님</a>
-					        <div class="dropdown-menu" aria-labelledby="dropdown03">
-					          <a class="dropdown-item" href="${cp}/member/modify_form">정보 수정</a>
-					          <a class="dropdown-item" href="${cp}/notice/mylist">내가 쓴글</a>
-					        </div>
-		     	 		</li>
-					</c:when>
+	      		<sec:authorize access="isAuthenticated()">
+					<sec:authentication var="principal" property="principal" />
+					<li class="nav-item dropdown active">
+				        <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${principal.username} 님</a>
+				        <div class="dropdown-menu" aria-labelledby="dropdown03">
+				          <a class="dropdown-item" href="${cp}/member/modify_form">정보 수정</a>
+				          <a class="dropdown-item" href="${cp}/notice/mylist">내가 쓴글</a>
+				          <sec:authorize access="hasRole('ROLE_ADMIN')">
+				          	<a class="dropdown-item" href="${cp}/admin/page">관리자 페이지</a>
+				          </sec:authorize>
+				        </div>
+	     	 		</li>
+     	 		</sec:authorize>
+				<sec:authorize access="isAnonymous()">
+					<li class="nav-item active">
+						<a class="nav-link" href="${cp}/sec/login_form">로그인<span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+	        			<a class="nav-link" href="${cp}/member/join_form">회원가입</a>
+	      			</li>
+      			</sec:authorize>
 				
-					<c:otherwise>
-						<li class="nav-item active">
-							<a class="nav-link" href="${cp}/member/login_form">로그인<span class="sr-only">(current)</span></a>
-						</li>
-						<li class="nav-item">
-		        			<a class="nav-link" href="${cp}/member/join_form">회원가입</a>
-		      			</li>
-					</c:otherwise>
-		      	</c:choose>
 	      
 	      		<li class="nav-item">
 	      			<a class="nav-link" href="${cp}/notice/list">공지사항</a>
 	      		</li>
 	    	</ul>
-		    <c:if test="${not empty sessionScope.mem }">
-		    	<a href="${cp}/member/logout" class="btn btn-primary mr-2">Logout</a>
-		    </c:if>
+		    <sec:authorize access="isAuthenticated()" >
+		    	<form action="${cp}/logout" method="post">
+		    		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+		    		<button type="submit" class="btn btn-primary mr-2">Logout</button>
+		    	</form>
+		    </sec:authorize>
 	  	</div>
 	</nav>
 	<div class="container">
