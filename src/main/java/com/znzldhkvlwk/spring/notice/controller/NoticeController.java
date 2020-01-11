@@ -83,12 +83,16 @@ public class NoticeController {
 	@RequestMapping(value="/detail", method = RequestMethod.GET)
 	public String detail(HttpServletRequest request, Model model) {
 		int id = Integer.parseInt(request.getParameter("id"));
-		service.hitPlus(id);
-		Notice notice = service.search(id);
-		SimpleDateFormat sf = new SimpleDateFormat("yyyy년MM월dd일 E요일 a hh시mm분");
-		model.addAttribute("formattedDate", sf.format(notice.getRegdate()));
-		model.addAttribute("n", notice);
-		return "notice/detail";
+		int hit_result = service.hitPlus(id);
+		//게시글이 존재하면 조회수 올라감
+		if(hit_result == 1) {
+			System.out.println(hit_result);
+			Notice notice = service.search(id);
+			SimpleDateFormat sf = new SimpleDateFormat("yyyy년MM월dd일 E요일 a hh시mm분");
+			model.addAttribute("formattedDate", sf.format(notice.getRegdate()));
+			model.addAttribute("n", notice);
+			return "notice/detail";
+		}else return "invalidAccess";
 	}
 	@RequestMapping("/delete")
 	public String delete(@RequestParam("id")String id) {
