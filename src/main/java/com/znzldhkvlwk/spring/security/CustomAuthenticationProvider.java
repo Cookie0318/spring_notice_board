@@ -7,6 +7,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import com.znzldhkvlwk.spring.member.Member;
 
 public class CustomAuthenticationProvider implements AuthenticationProvider{
@@ -14,12 +16,18 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
 	@Autowired
 	private UserDetailsService userService;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		String username = (String) authentication.getPrincipal();
 		String password = (String) authentication.getCredentials();
 		
 		Member member = (Member)userService.loadUserByUsername(username);
+		
+		String encoded_password = passwordEncoder.encode(password);
+		System.out.println(encoded_password);		
 		
 		if(!matchPassword(password, member.getPassword())) {
 			throw new BadCredentialsException(username);
@@ -36,12 +44,12 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
 	@Override
 	public boolean supports(Class<?> authentication) {
 		// TODO Auto-generated method stub
-		return false;
+		return (UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication));
 	}
 	
 	
 	private boolean matchPassword(String loginPwd, String password) {
-		return loginPwd.equals(password);
+		return passwordEncoder.matches(loginPwd, password);
 	}
 
 }
