@@ -3,11 +3,11 @@ package com.znzldhkvlwk.spring.member.controller;
 import java.security.Principal;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,6 +25,9 @@ public class MemberController {
 	@Qualifier("MemberService")
 	private MemberService service;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	
 	
 	@ModelAttribute("cp")
@@ -39,6 +42,7 @@ public class MemberController {
 	
 	@RequestMapping(value="/joinOk", method=RequestMethod.POST)
 	public String joinOk(Member member) {
+		member.setPassword(passwordEncoder.encode(member.getPassword()));
 		int result = service.join(member);
 		if(result == 0) System.out.println("회원가입 오류");
 		else System.out.println("회원가입 완료");
