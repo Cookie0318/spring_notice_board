@@ -91,7 +91,7 @@ public class NoticeController {
 		return "notice/detail";
 	}
 	@RequestMapping("/delete")
-	public String delete(@RequestParam("id")String id, Principal principal) {
+	public String delete(@RequestParam("id")String id) {
 		//비정상적 접근을 막기위해
 		//접근 아이디
 		Member mem = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
