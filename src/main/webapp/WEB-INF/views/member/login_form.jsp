@@ -23,9 +23,6 @@
 	  	<div class="collapse navbar-collapse" id="navbarsExample03">
 	    	<ul class="navbar-nav mr-auto">
 	      		<sec:authorize access="isAuthenticated()">
-					<%-- <li class="nav-item active">
-						<a class="nav-link" href="#">${sessionScope.mem.id} 님 <span class="sr-only">(current)</span></a>
-					</li> --%>
 					<sec:authentication var="principal" property="principal" />
 					<li class="nav-item dropdown active">
 				        <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${principal.username} 님</a>
