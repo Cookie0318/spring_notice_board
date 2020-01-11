@@ -48,38 +48,12 @@ public class NoticeController {
 	}
 	
 	
-	
-//	@RequestMapping("/list")
-//	public String list(Model model) {
-//		
-//		model.addAttribute("list", service.list());
-//		
-//		return "list2";
-//	}
-	@RequestMapping("/test")
-	public String test(Model model) {
-		String result = service.test();
-		model.addAttribute("test", result);
-		
-		return "home";
-		
-	}
-	
-	
 	@RequestMapping("/list")
 	public String list(PagingVo vo, Model model
 			, @RequestParam(value="nowPage", required=false)String nowPage
 			, @RequestParam(value="cntPerPage", required=false)String cntPerPage){
 		int total = service.getListCount();
-//		if (nowPage == null && cntPerPage == null) {
-//			nowPage = "1";
-//			cntPerPage = "5";
-//		} else if (nowPage == null) {
-//			nowPage = "1";
-//		} else if (cntPerPage == null) {
-//			cntPerPage = "5";
-//		}
-//		vo = new PagingVo(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+
 		vo = getPagingVo(total, nowPage, cntPerPage);
 		model.addAttribute("paging", vo);
 		model.addAttribute("list", service.list(vo));
@@ -153,6 +127,8 @@ public class NoticeController {
 		Notice n = service.search(Integer.parseInt(id));
 		
 		if(n != null && loginId.equals(n.getWriter_Id())) {
+			SimpleDateFormat sf = new SimpleDateFormat("yyyy년MM월dd일 E요일 a hh시mm분");
+			model.addAttribute("formattedDate", sf.format(n.getRegdate()));
 			model.addAttribute("n", n);
 			return "notice/modify_form";
 		}
