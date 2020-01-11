@@ -57,7 +57,6 @@
 		    		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		    		<button type="submit" class="btn btn-primary mr-2">Logout</button>
 		    	</form>
-		    	<%-- <a href="${cp}/logout" class="btn btn-primary mr-2">Logout</a> --%>
 		    </sec:authorize>
 	  	</div>
 	</nav>
