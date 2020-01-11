@@ -42,5 +42,6 @@
         
         <beans:bean id="userService" class="com.znzldhkvlwk.spring.security.CustomUserDetailService" />
         <beans:bean id="userAuthProvider" class="com.znzldhkvlwk.spring.security.CustomAuthenticationProvider" />
+        <beans:bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
     
 </beans:beans>
