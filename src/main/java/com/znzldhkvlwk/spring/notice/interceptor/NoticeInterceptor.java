@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -14,13 +15,8 @@ public class NoticeInterceptor extends HandlerInterceptorAdapter{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		HttpSession session = request.getSession(false);
-		if(session != null) {
-			Object obj = session.getAttribute("mem");
-			if(obj != null) {
-				return true;
-			}
-		}
+		Member mem = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String loginId = mem.getId();
 		response.sendRedirect(request.getContextPath()+"/invalidAccess");
 		return false;
 	}
