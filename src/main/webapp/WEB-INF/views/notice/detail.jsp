@@ -78,10 +78,19 @@
 		<div class="text-center">
 			<a class="btn btn-primary" href="${cp}/notice/list">목록</a>
 			<sec:authentication var="principal" property="principal" />
-			<c:if test="${n.writer_Id == principal.username}">
+			<sec:authorize access="hasRole('ROLE_ADMIN')">
+				<c:if test="${n.writer_Id == principal.username}">	
+					<a class="btn btn-success" href="${cp}/notice/modify_form?id=${n.id}">수정</a>
+				</c:if>
 				<a class="btn btn-danger" href="${cp}/notice/delete?id=${n.id}">삭제</a>
-				<a class="btn btn-success" href="${cp}/notice/modify_form?id=${n.id}">수정</a>
-			</c:if>
+			</sec:authorize>
+			
+			<sec:authorize access="hasRole('ROLE_USER')">
+				<c:if test="${n.writer_Id == principal.username}">
+					<a class="btn btn-danger" href="${cp}/notice/delete?id=${n.id}">삭제</a>
+					<a class="btn btn-success" href="${cp}/notice/modify_form?id=${n.id}">수정</a>
+				</c:if>
+			</sec:authorize>
 		</div>
 	</div>
 
