@@ -14,7 +14,7 @@
 </head>
 <body>
 <div>
-	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+	<nav class="navbar navbar-expand-sm navbar-dark bg-dark" style="height=40px;">
 		<a class="navbar-brand" href="${cp}/">Cookie &amp; Pizza</a>
 	  	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
 	    	<span class="navbar-toggler-icon"></span>
@@ -52,7 +52,7 @@
 	      			<a class="nav-link" href="${cp}/notice/list">공지사항</a>
 	      		</li>
 	    	</ul>
-		    <sec:authorize access="isAuthenticated()" >
+		    <sec:authorize access="isAuthenticated()">
 		    	<form action="${cp}/logout" method="post">
 		    		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		    		<button type="submit" class="btn btn-primary mr-2">Logout</button>
@@ -62,7 +62,7 @@
 	</nav>
 	<div id="content">
 		<h1>Welcome to Cookie and Pizza Web Site</h1>
-		<p class="lead">
+		<p>
 		"안녕하세요 CRUD, 회원가입 및 로그인 구현 연습 사이트 입니다."
 		</p>
 		
