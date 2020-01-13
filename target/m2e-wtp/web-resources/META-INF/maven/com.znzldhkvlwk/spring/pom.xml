@@ -125,7 +125,7 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency> 
-		
+		<!-- jdbc -->
 		<dependency>
 		    <groupId>com.oracle.ojdbc</groupId>
 		    <artifactId>ojdbc8</artifactId>
