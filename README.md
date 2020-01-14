@@ -4,10 +4,10 @@
 # Development Environment
 * OS: Mac OS
 * IDE: eclipse
-* java version : 1.8
+* jdk version : 1.8
 * Spring framework : 4.3.18
 * Spring Security : 4.2.7
-* Database : Docker container에 oracle 올려서 사용, Mybatis 사용
+* Database : Oracle DB(Docker container), Mybatis
 * Design : Bootstrap 4
 
 # Overview
@@ -27,5 +27,18 @@
   * 정보 수정
   * 내가 쓴 글
 # 미리보기
-> 홈 화면
+> **홈 화면**
+
 ![홈 화면](/readme_img/home.png "홈 화면 이미지")
+
+> **로그인**
+
+![로그인 페이지](/readme_img/login.png "로그인 이미지")
+
+> **게시글 목록**
+
+![목록 페이지](/readme_img/list.png "목록 페이지")
+
+> **세부 화면 - 관리자**
+
+![게시글 읽기](/readme_img/detail_admin.png "관리자 게시글 읽기")
