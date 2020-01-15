@@ -13,8 +13,22 @@
 <title>Cookie &amp; Pizza</title>
 <script>
 	function validation(){
-		var 
+		var getName = RegExp(/^[가-힣]+$/);
+		
+		if($("#name").val() == ""){
+			alert("이름 입력");
+			$("#name").focus();
+			return false;
+		}
+		
+		if(getName.test($("#name").val())){
+			alert("이름 형식에 맞게 입력");
+			$("#name").val("");
+			$("#name").focus();
+			return false;
+		}
 	}
+	
 
 </script>
 </head>
