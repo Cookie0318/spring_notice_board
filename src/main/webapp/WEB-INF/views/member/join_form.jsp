@@ -118,14 +118,24 @@
 			if($("#name").val() == ""){
 				alert("이름 입력");
 				$("#name").focus();
-				console.log("test");
 				return false;
 			}
 			
-			if(getName.test($("#name").val())){
+			if(!getName.test($("#name").val())){
 				alert("이름 형식에 맞게 입력");
 				$("#name").val("");
 				$("#name").focus();
+				return false;
+			}
+			
+			if($("#id").val() == ""){
+				alert("아이디를 입력하세요!");
+				$("#id").focus();
+				return false;
+			}
+			if(!getId.test($("#id").val())){
+				alert("아이디는 영어, 숫자 조합으로 4~12자까지 가능합니다.");
+				$("#id").focus();
 				return false;
 			}
 		});
