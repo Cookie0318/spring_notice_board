@@ -11,26 +11,6 @@
 <link rel="stylesheet" href="${cp}/resources/css/bootstrap.css">
 <link rel="stylesheet" href="${cp}/resources/css/myStyle.css">
 <title>Cookie &amp; Pizza</title>
-<script>
-	function validation(){
-		var getName = RegExp(/^[가-힣]+$/);
-		
-		if($("#name").val() == ""){
-			alert("이름 입력");
-			$("#name").focus();
-			return false;
-		}
-		
-		if(getName.test($("#name").val())){
-			alert("이름 형식에 맞게 입력");
-			$("#name").val("");
-			$("#name").focus();
-			return false;
-		}
-	}
-	
-
-</script>
 </head>
 <body>
 <div>
@@ -82,7 +62,7 @@
 	</nav>
 	<div id="join" class="container text-center">
 		<h1>회원가입 하기</h1>
-		<form:form action="${cp}/member/joinOk" method="post" commandName="member" onsubmit="return validation()">
+		<form:form id="joinform" action="${cp}/member/joinOk" method="post" commandName="member">
 			<table class="table">
 				<tr>
 					<td>이름: </td>
@@ -130,5 +110,26 @@
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$("#joinform").submit(function() {
+			var getName = RegExp(/^[가-힣]+$/);
+			
+			if($("#name").val() == ""){
+				alert("이름 입력");
+				$("#name").focus();
+				console.log("test");
+				return false;
+			}
+			
+			if(getName.test($("#name").val())){
+				alert("이름 형식에 맞게 입력");
+				$("#name").val("");
+				$("#name").focus();
+				return false;
+			}
+		});
+	});
+</script>
 <script src="${cp}/resources/js/bootstrap.js"></script>
 </html>
