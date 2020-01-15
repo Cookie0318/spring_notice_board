@@ -81,8 +81,8 @@
 				<tr>
 					<td>성별: </td>
 					<td>
-					<form:radiobutton path="gender" value="남성" label="남성" />
-					<form:radiobutton path="gender" value="여성" label="여성" />
+					<form:radiobutton path="gender" value="남성" label="남성" id="man"/>
+					<form:radiobutton path="gender" value="여성" label="여성" id="woman" />
 					</td>
 					
 				</tr>
@@ -113,6 +113,7 @@
 	$(document).ready(function() {
 		$("#joinform").submit(function() {
 			var getName = RegExp(/^[가-힣]+$/);
+			var getId = RegExp(/^[A-Za-z0-9]{4,12}$/);
 			
 			if($("#name").val() == ""){
 				alert("이름 입력");
