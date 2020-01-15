@@ -138,6 +138,12 @@
 				$("#id").focus();
 				return false;
 			}
+			
+			if($("#password").val() == "") {
+				alert("비밀 번호를 입력 해주세요!");
+				$("#pasword").focus();
+				return false;
+			}
 		});
 	});
 </script>
