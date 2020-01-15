@@ -80,7 +80,7 @@
 				
 				<tr>
 					<td>성별: </td>
-					<td>
+					<td id="gender">
 					<form:radiobutton path="gender" value="남성" label="남성" id="man"/>
 					<form:radiobutton path="gender" value="여성" label="여성" id="woman" />
 					</td>
@@ -115,35 +115,45 @@
 			var getName = RegExp(/^[가-힣]+$/);
 			var getId = RegExp(/^[A-Za-z0-9]{4,12}$/);
 			
+			//이름 칸 비어있을때
 			if($("#name").val() == ""){
 				alert("이름 입력");
 				$("#name").focus();
 				return false;
 			}
-			
+			//이름이 한글이 아닐때
 			if(!getName.test($("#name").val())){
 				alert("이름 형식에 맞게 입력");
 				$("#name").val("");
 				$("#name").focus();
 				return false;
 			}
-			
+			//아이디칸 비어있을때
 			if($("#id").val() == ""){
 				alert("아이디를 입력하세요!");
 				$("#id").focus();
 				return false;
 			}
+			//아이디 조합이 이상할때
 			if(!getId.test($("#id").val())){
 				alert("아이디는 영어, 숫자 조합으로 4~12자까지 가능합니다.");
 				$("#id").focus();
 				return false;
 			}
-			
+			//패스워드 입력 안했을때
 			if($("#password").val() == "") {
 				alert("비밀 번호를 입력 해주세요!");
 				$("#pasword").focus();
 				return false;
 			}
+			//성별 입력 안했을 때
+			if(!$("#man").prop("checked") && !$("#woman").prop("checked")) {
+				alert("성별을 선택 해주세요!");
+				$("#gender").focus();
+				return false;
+			}
+			
+			
 		});
 	});
 </script>
