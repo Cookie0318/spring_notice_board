@@ -70,7 +70,10 @@
 				</tr>
 				<tr>
 					<td>아이디: </td>
-					<td><form:input path="id" id="id"/></td>
+					<td id="td_id">
+						<form:input path="id" id="id"/>
+						<a href="#" class="btn btn-primary">중복 확인</a>
+					</td>
 				</tr>
 				
 				<tr>
@@ -110,57 +113,74 @@
 </div>
 <script src="${cp}/resources/js/jquery-3.4.1.min.js"></script>
 <script>
+	
 	$(document).ready(function() {
 		$("#joinform").submit(function() {
 			var getName = RegExp(/^[가-힣]+$/);
 			var getId = RegExp(/^[A-Za-z0-9]{4,12}$/);
 			var getBirthday = RegExp(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/);
-			
+
 			//이름 칸 비어있을때
-			if($("#name").val() == ""){
+			if ($("#name").val() == "") {
 				alert("이름 입력");
 				$("#name").focus();
 				return false;
 			}
 			//이름이 한글이 아닐때
-			if(!getName.test($("#name").val())){
+			if (!getName.test($("#name").val())) {
 				alert("이름 형식에 맞게 입력");
 				$("#name").val("");
 				$("#name").focus();
 				return false;
 			}
 			//아이디칸 비어있을때
-			if($("#id").val() == ""){
+			if ($("#id").val() == "") {
 				alert("아이디를 입력하세요!");
 				$("#id").focus();
 				return false;
 			}
 			//아이디 조합이 이상할때
-			if(!getId.test($("#id").val())){
+			if (!getId.test($("#id").val())) {
 				alert("아이디는 영어, 숫자 조합으로 4~12자까지 가능합니다.");
 				$("#id").focus();
 				return false;
 			}
 			//패스워드 입력 안했을때
-			if($("#password").val() == "") {
+			if ($("#password").val() == "") {
 				alert("비밀 번호를 입력 해주세요!");
 				$("#pasword").focus();
 				return false;
 			}
 			//성별 입력 안했을 때
-			if(!$("#man").prop("checked") && !$("#woman").prop("checked")) {
+			if (!$("#man").prop("checked") && !$("#woman").prop("checked")) {
 				alert("성별을 선택 해주세요!");
 				$("#gender").focus();
 				return false;
 			}
 			//생년월일 조합이 안맞을때 yyyy-MM-dd
-			if(!getBirthday.test($("#birthday").val())){
+			if (!getBirthday.test($("#birthday").val())) {
 				alert("생일을 정확히 입력하세요. ex)1999-12-25");
 				$("#birthday").val("");
 				$("#birthday").focus();
 				return false;
 			}
 		});
+		$("#id").change(function () {
+			var getId = RegExp(/^[A-Za-z0-9]{4,12}$/);
+			if($("#error_invalid") != null) {
+				$("#error_invalid").remove();
+			}
+			if($("#error_null") != null) {
+				$("#error_null").remove();
+			}
+			
+			if($("#id").val() == "") {
+				$("#td_id").append("<td style=\"color:red;\" id=\"error_null\">문자열 입력</td>");
+			}else if(!getId.test($("#id").val())) {
+				$("#td_id").append("<td style=\"color:red;\" id=\"error_invalid\">이름 형식에 맞게 입력</td>");
+			}
+		})
+
 	});
 </script>
 <script src="${cp}/resources/js/bootstrap.js"></script>
