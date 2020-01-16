@@ -144,13 +144,17 @@
 			}
 			//아이디가 제대로 입력 안됬을 때
 			if (idOk == 0){
-				alert("아이디를 제대로 입력");
+				alert("아이디를 확인하세요!");
 				return false;
 			}
-			//패스워드 입력 안했을때
-			if ($("#password").val() == "") {
-				alert("비밀 번호를 입력 해주세요!");
-				$("#pasword").focus();
+			//패스워드 입력 안했을 때
+			if (passwordOk == 0) {
+				alert("비밀번호를 확인하세요!");
+				return false;
+			}
+			//패스워드가 일치하지 않을 때
+			if (passwordChecked == 0) {
+				alert("비밀번호가 일치하지 않습니다!");
 				return false;
 			}
 			//성별 입력 안했을 때
@@ -167,7 +171,7 @@
 				return false;
 			}
 		});
-		$("#id").change(function () {
+		$("#id").on("propertychange change keyup paste input", function () {
 			var getId = RegExp(/^[A-Za-z0-9]{4,12}$/);
 			
 			idOk = 1;
@@ -187,7 +191,7 @@
 			}
 		});
 		
-		$("#password").change(function() {
+		$("#password").on("propertychange change keyup paste input", function() {
 			var getPassword = RegExp(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{6,12}$/);
 			
 			passwordOk = 1;
@@ -207,7 +211,7 @@
 			}
 		});
 		
-		$("#password_check").change(function() {
+		$("#password_check").on("propertychange change keyup paste input", function() {
 			var password = $("#password").val();
 			var password_check = $("#password_check").val();
 			
@@ -218,6 +222,7 @@
 			
 			if(password !== password_check) {
 				$("#td_password_check").append("<p style=\"color:red;\" id=\"error_pwchk\">패스워드가 맞지 않습니다.</p>");
+				passwordChecked = 0;
 			}
 		});
 
