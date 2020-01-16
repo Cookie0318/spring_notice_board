@@ -95,10 +95,10 @@
 					
 				</tr>
 				
-				<tr>
+				<%-- <tr>
 					<td>나이: </td>
 					<td><form:input path="age"/>세</td>
-				</tr>
+				</tr> --%>
 				
 				<tr>
 					<td>생년월일: </td>
