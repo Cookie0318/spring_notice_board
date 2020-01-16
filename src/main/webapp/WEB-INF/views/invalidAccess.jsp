@@ -59,12 +59,10 @@
 	<div class="container">
 			비정상적 접근입니다.
 			<a class="btn btn-primary" href="${cp}/notice/list">목록</a>
-			
-		</div>
 	</div>
 
 
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="${cp}/resources/js/jquery-3.4.1.min.js"></script>
 <script src="${cp}/resources/js/bootstrap.js"></script>
 </body>
 </html>
