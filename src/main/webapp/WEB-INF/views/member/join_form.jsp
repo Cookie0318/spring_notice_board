@@ -82,6 +82,11 @@
 				</tr>
 				
 				<tr>
+					<td>비밀번호 확인: </td>
+					<td id="td_password_check"><form:password path="password" id="password_check"/></td>
+				</tr>
+				
+				<tr>
 					<td>성별: </td>
 					<td id="gender">
 					<form:radiobutton path="gender" value="남성" label="남성" id="man"/>
@@ -115,6 +120,7 @@
 <script>
 	
 	$(document).ready(function() {
+		var idOk = 0; // 아이디가 유효한지 나타내는 변수 0: 유효하지 않음, 1: 유효함
 		$("#joinform").submit(function() {
 			var getName = RegExp(/^[가-힣]+$/);
 			var getId = RegExp(/^[A-Za-z0-9]{4,12}$/);
@@ -133,16 +139,9 @@
 				$("#name").focus();
 				return false;
 			}
-			//아이디칸 비어있을때
-			if ($("#id").val() == "") {
-				alert("아이디를 입력하세요!");
-				$("#id").focus();
-				return false;
-			}
-			//아이디 조합이 이상할때
-			if (!getId.test($("#id").val())) {
-				alert("아이디는 영어, 숫자 조합으로 4~12자까지 가능합니다.");
-				$("#id").focus();
+			//아이디가 제대로 입력 안됬을 때
+			if (idOk == 0){
+				alert("아이디를 제대로 입력");
 				return false;
 			}
 			//패스워드 입력 안했을때
@@ -167,6 +166,8 @@
 		});
 		$("#id").change(function () {
 			var getId = RegExp(/^[A-Za-z0-9]{4,12}$/);
+			
+			idOk = 1;
 			if($("#error_invalid") != null) {
 				$("#error_invalid").remove();
 			}
@@ -176,8 +177,10 @@
 			
 			if($("#id").val() == "") {
 				$("#td_id").append("<td style=\"color:red;\" id=\"error_null\">문자열 입력</td>");
+				idOk = 0;
 			}else if(!getId.test($("#id").val())) {
 				$("#td_id").append("<td style=\"color:red;\" id=\"error_invalid\">이름 형식에 맞게 입력</td>");
+				idOk = 0;
 			}
 		})
 
