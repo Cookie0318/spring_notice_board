@@ -83,7 +83,7 @@
 				
 				<tr>
 					<td>비밀번호 확인: </td>
-					<td id="td_password_check"><form:password path="password" id="password_check"/></td>
+					<td id="td_password_check"><input type="password" id="password_check"/></td>
 				</tr>
 				
 				<tr>
@@ -122,7 +122,7 @@
 	$(document).ready(function() {
 		var idOk = 0; // 아이디가 유효한지 나타내는 변수 0: 유효하지 않음, 1: 유효함
 		var passwordOk = 0; // 비밀번호가 유효한지 나타내는 변수 0: 유효하지 않음, 1: 유효함
-		var passwordCheck = 0; //0 : 비밀번호 확인 안됨, 1 : 비밀번호 확인 됨
+		var passwordChecked = 0; //0 : 비밀번호 확인 안됨, 1 : 비밀번호 확인 됨
 		
 		$("#joinform").submit(function() {
 			var getName = RegExp(/^[가-힣]+$/);
@@ -187,7 +187,7 @@
 			}
 		});
 		
-		$("#password").change(function () {
+		$("#password").change(function() {
 			var getPassword = RegExp(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{6,12}$/);
 			
 			passwordOk = 1;
@@ -205,7 +205,21 @@
 				$("#td_password").append("<p style=\"color:red;\" id=\"error_pw_invalid\">패스워드는 6~12자리 영어,숫자,특수문자 포함입니다.</p>");
 				passwordOk = 0;
 			}
-		})
+		});
+		
+		$("#password_check").change(function() {
+			var password = $("#password").val();
+			var password_check = $("#password_check").val();
+			
+			passwordChecked = 1;
+			if($("#error_pwchk") != null) {
+				$("#error_pwchk").remove();
+			}
+			
+			if(password !== password_check) {
+				$("#td_password_check").append("<p style=\"color:red;\" id=\"error_pwchk\">패스워드가 맞지 않습니다.</p>");
+			}
+		});
 
 	});
 </script>
