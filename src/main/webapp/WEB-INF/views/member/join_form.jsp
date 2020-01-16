@@ -78,7 +78,7 @@
 				
 				<tr>
 					<td>비밀번호: </td>
-					<td><form:password path="password" id="password"/></td>
+					<td id="td_password"><form:password path="password" id="password"/></td>
 				</tr>
 				
 				<tr>
@@ -121,6 +121,9 @@
 	
 	$(document).ready(function() {
 		var idOk = 0; // 아이디가 유효한지 나타내는 변수 0: 유효하지 않음, 1: 유효함
+		var passwordOk = 0; // 비밀번호가 유효한지 나타내는 변수 0: 유효하지 않음, 1: 유효함
+		var passwordCheck = 0; //0 : 비밀번호 확인 안됨, 1 : 비밀번호 확인 됨
+		
 		$("#joinform").submit(function() {
 			var getName = RegExp(/^[가-힣]+$/);
 			var getId = RegExp(/^[A-Za-z0-9]{4,12}$/);
@@ -168,19 +171,39 @@
 			var getId = RegExp(/^[A-Za-z0-9]{4,12}$/);
 			
 			idOk = 1;
-			if($("#error_invalid") != null) {
-				$("#error_invalid").remove();
+			if($("#error_id_invalid") != null) {
+				$("#error_id_invalid").remove();
 			}
-			if($("#error_null") != null) {
-				$("#error_null").remove();
+			if($("#error_id_null") != null) {
+				$("#error_id_null").remove();
 			}
 			
 			if($("#id").val() == "") {
-				$("#td_id").append("<td style=\"color:red;\" id=\"error_null\">문자열 입력</td>");
+				$("#td_id").append("<p style=\"color:red;\" id=\"error_id_null\">문자열 입력</p>");
 				idOk = 0;
 			}else if(!getId.test($("#id").val())) {
-				$("#td_id").append("<td style=\"color:red;\" id=\"error_invalid\">이름 형식에 맞게 입력</td>");
+				$("#td_id").append("<p style=\"color:red;\" id=\"error_id_invalid\">이름 형식에 맞게 입력</p>");
 				idOk = 0;
+			}
+		});
+		
+		$("#password").change(function () {
+			var getPassword = RegExp(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{6,12}$/);
+			
+			passwordOk = 1;
+			if($("#error_pw_null") != null){
+				$("#error_pw_null").remove();
+			}
+			if($("#error_pw_invalid") != null){
+				$("#error_pw_invalid").remove();
+			}
+			
+			if($("#password").val() == "") {
+				$("#td_password").append("<p style=\"color:red;\" id=\"error_pw_null\">패스워드를 입력하세요</p>");
+				passwordOk = 0;
+			}else if(!getPassword.test($("#password").val())) {
+				$("#td_password").append("<p style=\"color:red;\" id=\"error_pw_invalid\">패스워드는 6~12자리 영어,숫자,특수문자 포함입니다.</p>");
+				passwordOk = 0;
 			}
 		})
 
