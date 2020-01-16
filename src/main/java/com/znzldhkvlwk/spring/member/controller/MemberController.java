@@ -47,7 +47,7 @@ public class MemberController {
 		//비밀번호 암호화
 		member.setPassword(passwordEncoder.encode(member.getPassword()));
 		//나이계산(yyyy-MM-dd)
-		String birthYear = (member.getBirthday()).substring(0, 5);
+		String birthYear = (member.getBirthday()).substring(0, 4);
 		Date today = new Date();
 		SimpleDateFormat sf = new SimpleDateFormat("yyyy");
 		String thisYear = sf.format(today);
