@@ -1,6 +1,8 @@
 package com.znzldhkvlwk.spring.member.controller;
 
 import java.security.Principal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -42,7 +44,17 @@ public class MemberController {
 	
 	@RequestMapping(value="/joinOk", method=RequestMethod.POST)
 	public String joinOk(Member member) {
+		//비밀번호 암호화
 		member.setPassword(passwordEncoder.encode(member.getPassword()));
+		//나이계산(yyyy-MM-dd)
+		String birthYear = (member.getBirthday()).substring(0, 4);
+		Date today = new Date();
+		SimpleDateFormat sf = new SimpleDateFormat("yyyy");
+		String thisYear = sf.format(today);
+		int age = Integer.parseInt(thisYear) - Integer.parseInt(birthYear) + 1;
+		//Member 객체에 대입
+		member.setAge(age);
+		
 		int result = service.join(member);
 		if(result == 0) System.out.println("회원가입 오류");
 		else System.out.println("회원가입 완료");
