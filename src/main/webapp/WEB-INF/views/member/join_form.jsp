@@ -102,7 +102,7 @@
 				
 				<tr>
 					<td>생년월일: </td>
-					<td style="color:#cccccc;"><form:input path="birthday" id="birthday"/>(yyyy-MM-dd)</td>
+					<td style="color:#cccccc;" id="td_birthday"><form:input path="birthday" id="birthday"/>(yyyy-MM-dd)</td>
 				</tr>
 				
 				<tr>
@@ -123,11 +123,11 @@
 		var idOk = 0; // 아이디가 유효한지 나타내는 변수 0: 유효하지 않음, 1: 유효함
 		var passwordOk = 0; // 비밀번호가 유효한지 나타내는 변수 0: 유효하지 않음, 1: 유효함
 		var passwordChecked = 0; //0 : 비밀번호 확인 안됨, 1 : 비밀번호 확인 됨
+		var birthdayOk = 0;
 		
 		$("#joinform").submit(function() {
 			var getName = RegExp(/^[가-힣]+$/);
 			var getId = RegExp(/^[A-Za-z0-9]{4,12}$/);
-			var getBirthday = RegExp(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/);
 
 			//이름 칸 비어있을때
 			if ($("#name").val() == "") {
@@ -164,10 +164,8 @@
 				return false;
 			}
 			//생년월일 조합이 안맞을때 yyyy-MM-dd
-			if (!getBirthday.test($("#birthday").val())) {
+			if (birthdayOk == 0) {
 				alert("생일을 정확히 입력하세요. ex)1999-12-25");
-				$("#birthday").val("");
-				$("#birthday").focus();
 				return false;
 			}
 		});
@@ -225,6 +223,20 @@
 				passwordChecked = 0;
 			}
 		});
+		
+		$("#birthday").on("propertychange change keyup paste input", function() {
+			var getBirthday = RegExp(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/);
+			
+			birthdayOk = 1;
+			if($("#error_birth") != null){
+				$("#error_birth").remove();
+			}
+			
+			if(!getBirthday.test($("birthday").val())){
+				$("#td_birthday").append("<p style=\"color:red;\" id=\"error_birth\">생년월일 형식이 맞지 않습니다.</p>")
+				birthdayOk = 0;
+			}
+		})
 
 	});
 </script>
