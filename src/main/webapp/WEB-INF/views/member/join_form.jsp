@@ -62,7 +62,7 @@
 	</nav>
 	<div id="join" class="container text-center">
 		<h1>회원가입 하기</h1>
-		<form:form id="joinform" action="${cp}/member/joinOk" method="post" commandName="member">
+		<form:form id="joinform" action="${cp}/member/joinOk" method="post" commandName="member" autocomplete="off">
 			<table class="table">
 				<tr>
 					<td>이름: </td>
@@ -128,6 +128,8 @@
 		$("#joinform").submit(function() {
 			var getName = RegExp(/^[가-힣]+$/);
 			var getId = RegExp(/^[A-Za-z0-9]{4,12}$/);
+			var getPhone1 = RegExp(/^[0-9]{3}$/);
+			var getPhone2 = RegExp(/^[0-9]{4}$/);
 
 			//이름 칸 비어있을때
 			if ($("#name").val() == "") {
@@ -166,6 +168,11 @@
 			//생년월일 조합이 안맞을때 yyyy-MM-dd
 			if (birthdayOk == 0) {
 				alert("생일을 정확히 입력하세요. ex)1999-12-25");
+				return false;
+			}
+			//핸드폰번호 정확히 입력 안했을 때
+			if(!getPhone1.test($("#phone1").val()) || !getPhone2.test($("#phone2").val()) || !getPhone2.test($("#phone3").val())){
+				alert("핸드폰 번호를 확인하세요.");
 				return false;
 			}
 		});
@@ -232,7 +239,7 @@
 				$("#error_birth").remove();
 			}
 			
-			if(!getBirthday.test($("birthday").val())){
+			if(!getBirthday.test($("#birthday").val())){
 				$("#td_birthday").append("<p style=\"color:red;\" id=\"error_birth\">생년월일 형식이 맞지 않습니다.</p>")
 				birthdayOk = 0;
 			}
