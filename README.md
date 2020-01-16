@@ -23,13 +23,17 @@
   * 로그인
     * Spring security를 사용한 인증작업, 커스텀 로그인 페이지 사용
   * 회원 가입
-    * 비밀번호 암호화(BCypt PasswordEncoder 사용)
+    * 비밀번호 암호화(Spring Security - BCypt PasswordEncoder 사용)
+    * 유효화 검사(jQuery 사용)
   * 정보 수정
   * 내가 쓴 글
 # 미리보기
 > **홈 화면**
 
 ![홈 화면](/readme_img/home.png "홈 화면 이미지")
+
+> **회원 가입** 
+![회원 가입](/readme_img/join.png "회원가입 이미지")
 
 > **로그인**
 
