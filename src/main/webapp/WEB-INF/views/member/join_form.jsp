@@ -188,10 +188,10 @@
 			}
 			
 			if($("#id").val() == "") {
-				$("#td_id").append("<p style=\"color:red;\" id=\"error_id_null\">문자열 입력</p>");
+				$("#td_id").append("<p style=\"color:red;\" id=\"error_id_null\">아이디를 입력해주세요</p>");
 				idOk = 0;
 			}else if(!getId.test($("#id").val())) {
-				$("#td_id").append("<p style=\"color:red;\" id=\"error_id_invalid\">이름 형식에 맞게 입력</p>");
+				$("#td_id").append("<p style=\"color:red;\" id=\"error_id_invalid\">아이디는 영문, 숫자 조합 4~12자리 입니다.</p>");
 				idOk = 0;
 			}
 		});
